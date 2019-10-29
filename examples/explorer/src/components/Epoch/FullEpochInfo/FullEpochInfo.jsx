@@ -9,7 +9,7 @@ import EpochInfo from '../EpochInfo/EpochInfo';
 
 const FullEpochInfo = ({ epoch }) => {
   if (!epoch) {
-    return <EmptyResult {...{ entityName: 'Epoch' }} />;
+    return <EmptyResult {...{ entityName: 'epoch' }} />;
   }
 
   return (

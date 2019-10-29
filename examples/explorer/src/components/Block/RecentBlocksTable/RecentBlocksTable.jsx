@@ -2,6 +2,7 @@ import React from 'react';
 
 import graphql from 'babel-plugin-relay/macro';
 import { createRefetchContainer } from 'react-relay';
+import logger from '../../../logger/logger';
 
 import BlockTable from '../BlockTable/BlockTable';
 import { getDescPageQuery, pageNumberDesc } from '../../../helpers/paginationHelper';
@@ -12,20 +13,18 @@ const RecentBlocksTable = ({ data, relay }) => {
 
   const handlePageChange = page => {
     const params = getDescPageQuery(page.current, connection.totalCount);
+    const variables = {
+      first: params.first || null,
+      last: params.last || null,
+      after: params.after || null,
+      before: params.before || null
+    };
 
-    relay.refetch(
-      {
-        first: params.first || null,
-        last: params.last || null,
-        after: params.after || null,
-        before: params.before || null
-      },
-      error => {
-        if (error) {
-          console.error(error); // eslint-disable-line no-console
-        }
+    relay.refetch(variables, error => {
+      if (error) {
+        logger.error('There was an error refetching allBlocks ');
       }
-    );
+    });
   };
 
   return (

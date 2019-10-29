@@ -8,6 +8,12 @@ $darker-grey: #212529;
 $medium-grey: #c5d0de;
 $light-grey: #f3f6f8;
 
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .disable-select {
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
@@ -54,9 +60,7 @@ $light-grey: #f3f6f8;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0px 6px 1px grey;
-  padding: 1%;
-  width: 80%;
+  width: 100%;
 }
 
 .entityInfoTable {

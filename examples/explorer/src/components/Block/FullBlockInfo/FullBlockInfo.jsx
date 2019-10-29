@@ -9,7 +9,7 @@ import BlockInfo from '../BlockInfo/BlockInfo';
 
 const FullBlockInfo = ({ block }) => {
   if (!block) {
-    return <EmptyResult {...{ entityName: 'Block' }} />;
+    return <EmptyResult {...{ entityName: 'block' }} />;
   }
 
   return (

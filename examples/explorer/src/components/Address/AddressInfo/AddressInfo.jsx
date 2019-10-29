@@ -8,7 +8,7 @@ import { EmptyResult, CopiableItem } from '../../Commons';
 
 const AddressInfo = ({ address }) => {
   if (!address) {
-    return <EmptyResult {...{ entityName: 'Address' }} />;
+    return <EmptyResult {...{ entityName: 'address' }} />;
   }
 
   return (

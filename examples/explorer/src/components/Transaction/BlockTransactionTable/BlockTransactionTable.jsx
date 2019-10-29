@@ -2,6 +2,7 @@ import React from 'react';
 
 import graphql from 'babel-plugin-relay/macro';
 import { createRefetchContainer } from 'react-relay';
+import logger from '../../../logger/logger';
 
 import TransactionTable from '../TransactionTable/TransactionTable';
 import { pageNumberDesc, getDescPageQuery } from '../../../helpers/paginationHelper';
@@ -27,7 +28,7 @@ const BlockTransactionTable = ({ block, relay }) => {
       },
       error => {
         if (error) {
-          console.error(error); // eslint-disable-line no-console
+        logger.error('There was an error refetching Block transactions');
         }
       }
     );

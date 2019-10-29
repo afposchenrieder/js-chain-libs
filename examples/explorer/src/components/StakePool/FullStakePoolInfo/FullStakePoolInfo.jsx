@@ -9,7 +9,7 @@ import { EmptyResult } from '../../Commons';
 
 const FullStakePoolInfo = ({ stakePool }) => {
   if (!stakePool) {
-    return <EmptyResult {...{ entityName: 'Epoch' }} />;
+    return <EmptyResult {...{ entityName: 'epoch' }} />;
   }
 
   return (

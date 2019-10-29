@@ -10,7 +10,7 @@ import { CertificateInfo } from '../../Certificate';
 
 const FullTransactionInfo = ({ transaction, status }) => {
   if (!transaction) {
-    return <EmptyResult {...{ entityName: 'Transaction' }} />;
+    return <EmptyResult {...{ entityName: 'transaction' }} />;
   }
   const { inputs, outputs, certificate } = transaction;
   return (

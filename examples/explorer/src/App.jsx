@@ -16,24 +16,22 @@ import {
 import './generalStyling.scss';
 
 const App = () => (
-  <div>
+  <div className="app">
     <MainNavbar />
-    <div>
-      {/* <StatusBar /> */}
-      <SearchBar />
-      <MainSection>
-        <Router id="router">
-          <NotFound default />
-          <EpochSearchResult path="epoch/:id" />
-          <StakePoolSearchResult path="pool/:id" />
-          <AddressSearchResult path="address/:bech32" />
-          <TransactionSearchResult path="tx/:id" />
-          <BlockSearchResult path="block/:id" />
-          <BlockByLengthSearchResult path="block/chainLength/:length" />
-          <RecentBlocks path="/" />
-        </Router>
-      </MainSection>
-    </div>
+    {/* <StatusBar /> */}
+    <SearchBar />
+    <MainSection>
+      <Router id="router">
+        <NotFound default />
+        <RecentBlocks path="/" />
+        <EpochSearchResult path="epoch/:id" />
+        <StakePoolSearchResult path="pool/:id" />
+        <AddressSearchResult path="address/:bech32" />
+        <TransactionSearchResult path="tx/:id" />
+        <BlockSearchResult path="block/:id" />
+        <BlockByLengthSearchResult path="block/chainLength/:length" />
+      </Router>
+    </MainSection>
   </div>
 );
 

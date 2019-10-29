@@ -2,6 +2,7 @@ import React from 'react';
 
 import graphql from 'babel-plugin-relay/macro';
 import { createRefetchContainer } from 'react-relay';
+import logger from '../../../logger/logger';
 
 import TransactionTable from '../TransactionTable/TransactionTable';
 import { pageNumberDesc, getDescPageQuery } from '../../../helpers/paginationHelper';
@@ -16,21 +17,19 @@ const AddressTransactionTable = ({ address, relay }) => {
 
   const handlePageChange = page => {
     const params = getDescPageQuery(page.current, connection.totalCount);
+    const variables = {
+      address: address.id,
+      first: params.first || null,
+      last: params.last || null,
+      after: params.after || null,
+      before: params.before || null
+    };
 
-    relay.refetch(
-      {
-        address: address.id,
-        first: params.first || null,
-        last: params.last || null,
-        after: params.after || null,
-        before: params.before || null
-      },
-      error => {
-        if (error) {
-          console.error(error); // eslint-disable-line no-console
-        }
+    relay.refetch(variables, error => {
+      if (error) {
+        logger.error('There was an error refetching Address blocks');
       }
-    );
+    });
   };
 
   return (

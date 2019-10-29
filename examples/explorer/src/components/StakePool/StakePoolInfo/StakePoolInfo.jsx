@@ -8,7 +8,7 @@ import { EmptyResult, CopiableItem } from '../../Commons';
 
 const StakePoolInfo = ({ stakePool }) => {
   if (!stakePool) {
-    return <EmptyResult {...{ entityName: 'StakePool' }} />;
+    return <EmptyResult {...{ entityName: 'stake pool' }} />;
   }
 
   return (

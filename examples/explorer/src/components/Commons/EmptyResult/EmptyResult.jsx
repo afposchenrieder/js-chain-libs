@@ -5,7 +5,7 @@ import './emptyResult.scss';
 // TODO: improve this component
 const EmptyResult = ({ entityName }) => (
   <div className="emptyResult">
-    <h4>We couldn&apos;t find the {entityName} you are looking for :(</h4>
+    <h4>We couldn&apos;t find the {entityName} you were looking for :(</h4>
   </div>
 );
 

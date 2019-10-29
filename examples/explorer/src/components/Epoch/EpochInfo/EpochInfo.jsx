@@ -9,7 +9,7 @@ import { getNextPrev } from '../../../helpers/epochHelper';
 
 const EpochInfo = ({ epoch }) => {
   if (!epoch) {
-    return <EmptyResult {...{ entityName: 'Epoch' }} />;
+    return <EmptyResult {...{ entityName: 'epoch' }} />;
   }
   const { firstBlock, lastBlock } = epoch;
   const baseUrl = '/epoch/';

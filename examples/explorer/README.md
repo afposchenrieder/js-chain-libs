@@ -26,7 +26,7 @@ A simple Explorer using Reactjs, React-bootstrap and Relay to use with Jorgunman
 
 # Install dependencies
 
-- Use nodejs v8.16: `nvm install 8.16.0 && nvm use 8.16.0` or you can just run `nvm use` in the root of the project.
+- Use nodejs v12.13: `nvm install 12.13.0 && nvm use 12.13.0` or you can just run `nvm use` in the root of the project.
 - Node dependencies: `npm install`
 
 # Configure
