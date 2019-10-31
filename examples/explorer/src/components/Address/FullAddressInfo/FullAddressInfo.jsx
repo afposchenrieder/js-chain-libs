@@ -17,9 +17,9 @@ const FullAddressInfo = ({ address }) => {
 
 export default createFragmentContainer(FullAddressInfo, {
   address: graphql`
-    fragment FullAddressInfo_address on Address {
+    fragment FullAddressInfo_address on Address @argumentDefinitions(txCount: { type: "Int" }) {
       ...AddressInfo_address
-      ...AddressTransactionTable_address
+      ...AddressTransactionTable_address @arguments(last: $txCount)
     }
   `
 });

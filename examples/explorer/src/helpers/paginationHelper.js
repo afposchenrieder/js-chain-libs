@@ -1,5 +1,9 @@
 import { TABLE_PAGE_SIZE } from './constants';
 
+/**
+ * Calculates the smaller page, could be the last or the first
+ * depending if it's ordered descending or ascending
+ */
 const pageRemainder = (totalCount, pageSize) => {
   return totalCount % pageSize;
 };
@@ -22,9 +26,9 @@ export const getPreviousPageQueryParam = connection => {
   return { before: connection.pageInfo.startCursor, last: TABLE_PAGE_SIZE };
 };
 
-/* FIXME: This function calculates the page number based on the endCursor of the
- * Graphql Connection object. We should not rely on the cursor for pagination
- * calculations.
+/* This function calculates the page number based on the endCursor of the
+ * Graphql Connection object. We rely on the cursor to be an increasing
+ * and continous number starting with zero
  */
 export const pageNumberDesc = (connection, pageSize = TABLE_PAGE_SIZE) => {
   const pageEnd = connection.pageInfo.endCursor;
@@ -32,10 +36,9 @@ export const pageNumberDesc = (connection, pageSize = TABLE_PAGE_SIZE) => {
   return Math.floor(Number.parseInt(pageEnd, 10) / pageSize) + 1;
 };
 
-/* FIXME: This function calculates the page the query params
- * to use in order to get an specific page. This only works
- * because the cursor is starting in zero, incremental and continous.
- * Should not be necessary when Jormungandr supports Offset-based pagination
+/* This function calculates the query params
+ * to use in order to get an specific page. We rely on the cursor
+ * to be an increasing and continous number starting with zero
  */
 export const getDescPageQuery = (pageNum, totalCount, pageSize = TABLE_PAGE_SIZE) => {
   const offset = pageOffset(totalCount, pageSize);

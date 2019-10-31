@@ -2,6 +2,7 @@ import React from 'react';
 import { Router } from '@reach/router';
 import { MainSection, MainNavbar, SearchBar } from './components/General';
 import { NotFound } from './components/Commons';
+import { TABLE_PAGE_SIZE } from './helpers/constants';
 
 import {
   RecentBlocks,
@@ -23,13 +24,13 @@ const App = () => (
     <MainSection>
       <Router id="router">
         <NotFound default />
-        <RecentBlocks path="/" />
-        <EpochSearchResult path="epoch/:id" />
-        <StakePoolSearchResult path="pool/:id" />
-        <AddressSearchResult path="address/:bech32" />
+        <RecentBlocks blocksCount={TABLE_PAGE_SIZE} path="/" />
+        <EpochSearchResult blocksCount={TABLE_PAGE_SIZE} path="epoch/:id" />
+        <StakePoolSearchResult blocksCount={TABLE_PAGE_SIZE} path="pool/:id" />
+        <AddressSearchResult txCount={TABLE_PAGE_SIZE} path="address/:bech32" />
         <TransactionSearchResult path="tx/:id" />
-        <BlockSearchResult path="block/:id" />
-        <BlockByLengthSearchResult path="block/chainLength/:length" />
+        <BlockSearchResult txCount={TABLE_PAGE_SIZE} path="block/:id" />
+        <BlockByLengthSearchResult txCount={TABLE_PAGE_SIZE} path="block/chainLength/:length" />
       </Router>
     </MainSection>
   </div>

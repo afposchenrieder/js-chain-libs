@@ -22,9 +22,9 @@ const FullEpochInfo = ({ epoch }) => {
 
 export default createFragmentContainer(FullEpochInfo, {
   epoch: graphql`
-    fragment FullEpochInfo_epoch on Epoch {
+    fragment FullEpochInfo_epoch on Epoch @argumentDefinitions(blocksCount: { type: "Int" }) {
       ...EpochInfo_epoch
-      ...EpochBlockTable_epoch @arguments(last: 10)
+      ...EpochBlockTable_epoch @arguments(last: $blocksCount)
     }
   `
 });

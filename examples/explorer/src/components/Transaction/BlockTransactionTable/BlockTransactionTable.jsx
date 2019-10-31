@@ -28,7 +28,7 @@ const BlockTransactionTable = ({ block, relay }) => {
       },
       error => {
         if (error) {
-        logger.error('There was an error refetching Block transactions');
+          logger.error('There was an error refetching Block transactions');
         }
       }
     );

@@ -22,9 +22,9 @@ const FullBlockInfo = ({ block }) => {
 
 export default createFragmentContainer(FullBlockInfo, {
   block: graphql`
-    fragment FullBlockInfo_block on Block {
+    fragment FullBlockInfo_block on Block @argumentDefinitions(txCount: { type: "Int" }) {
       ...BlockInfo_block
-      ...BlockTransactionTable_block
+      ...BlockTransactionTable_block @arguments(last: $txCount)
     }
   `
 });

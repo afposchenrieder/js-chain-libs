@@ -22,9 +22,10 @@ const FullStakePoolInfo = ({ stakePool }) => {
 
 export default createFragmentContainer(FullStakePoolInfo, {
   stakePool: graphql`
-    fragment FullStakePoolInfo_stakePool on Pool {
+    fragment FullStakePoolInfo_stakePool on Pool
+      @argumentDefinitions(blocksCount: { type: "Int" }) {
       ...StakePoolInfo_stakePool
-      ...StakePoolBlockTable_stakePool @arguments(last: 10)
+      ...StakePoolBlockTable_stakePool @arguments(last: $blocksCount)
     }
   `
 });

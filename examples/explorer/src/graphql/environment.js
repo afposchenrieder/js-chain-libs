@@ -1,4 +1,4 @@
-import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import { Environment, RecordSource, Store } from 'relay-runtime';
 import {
   RelayNetworkLayer,
   loggerMiddleware,
