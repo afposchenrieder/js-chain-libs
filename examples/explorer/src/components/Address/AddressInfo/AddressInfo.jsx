@@ -22,6 +22,10 @@ const AddressInfo = ({ address }) => {
               <td>
                 <CopiableItem text={address.id} />
               </td>
+              <td>Delegation:</td>
+              <td>
+                <CopiableItem text={address.delegation.id} />
+              </td>
             </tr>
           </tbody>
         </Table>
@@ -34,6 +38,9 @@ export default createFragmentContainer(AddressInfo, {
   address: graphql`
     fragment AddressInfo_address on Address {
       id
+      delegation {
+        id
+      }
     }
   `
 });
