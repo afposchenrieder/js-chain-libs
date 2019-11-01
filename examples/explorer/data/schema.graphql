@@ -4,7 +4,8 @@ Workaround needed due to relay issue https://github.com/facebook/relay/issues/18
 type Node {
   id: ID
 }
-type Address {
+
+interface Address {
   """
   The base32 representation of an address
   """
@@ -238,7 +239,7 @@ type TransactionEdge {
   cursor: IndexCursor!
 }
 
-type TransactionInput {
+interface TransactionInput {
   amount: Value!
   address: Address!
 }
@@ -246,6 +247,49 @@ type TransactionInput {
 type TransactionOutput {
   amount: Value!
   address: Address!
+}
+
+"""
+Pocho types
+"""
+type AccountAddress implements Address {
+  """
+  The base32 representation of an address
+  """
+  id: String!
+  delegation: Pool!
+  transactions(
+    first: Int
+    last: Int
+    before: IndexCursor
+    after: IndexCursor
+  ): TransactionConnection!
+}
+
+type UtxoAddress implements Address {
+  """
+  The base32 representation of an address
+  """
+  id: String!
+  delegation: Pool!
+  transactions(
+    first: Int
+    last: Int
+    before: IndexCursor
+    after: IndexCursor
+  ): TransactionConnection!
+  stakeKey: AccountAddress
+}
+
+type AccountTransactionInput implements TransactionInput {
+  amount: Value!
+  address: Address!
+}
+
+type UtxoTransactionInput implements TransactionInput {
+  amount: Value!
+  address: Address!
+  spent: Boolean!
 }
 
 scalar Value
