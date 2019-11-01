@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 import graphql from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 
-import { EmptyResult, CopiableItem } from '../../Commons';
+import { EmptyResult, CopiableItem, StakePoolLink, AddressLink } from '../../Commons';
 
 const AddressInfo = ({ address }) => {
   if (!address) {
@@ -23,6 +23,18 @@ const AddressInfo = ({ address }) => {
                 <CopiableItem text={address.id} />
               </td>
             </tr>
+            <tr>
+              <td>Delegation:</td>
+              <td>{address.delegation.id && <StakePoolLink id={address.delegation.id} />}</td>
+            </tr>
+            <tr>
+              <td>Type: </td>
+              <td>{address.__typename && <CopiableItem text={address.__typename} />}</td>
+            </tr>
+            <tr>
+              <td>KeyStake: </td>
+              <td>{address.stakeKey && <AddressLink id={address.stakeKey.id} />}</td>
+            </tr>
           </tbody>
         </Table>
       </div>
@@ -33,7 +45,16 @@ const AddressInfo = ({ address }) => {
 export default createFragmentContainer(AddressInfo, {
   address: graphql`
     fragment AddressInfo_address on Address {
+      __typename
       id
+      delegation {
+        id
+      }
+      ... on UtxoAddress {
+        stakeKey {
+          id
+        }
+      }
     }
   `
 });
